@@ -3,16 +3,18 @@ import type { Metadata } from 'next'
 import { ReactElement } from 'react';
 import { Inter } from 'next/font/google'
 import Header from '../components/header'
+import UseTransactionToast from '../hooks/useTransactionToast'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-        <body className={inter.className}>{children}</body>
-    </html>
+      <>
+        <Header/>
+        <div className={inter.className}>{children}</div>
+      </>
   )
 }
