@@ -130,69 +130,68 @@ const handleSubmit = (event:SyntheticEvent) => {
 //
 
 return (
-    <>
-  <div className="justify-center">
-    <form onSubmit={handleSubmit}>
-    <div>
+  <div className="flex justify-center items-start h-screen w-3/4">
+  <div className="w-1/3">
+    <form onSubmit={handleSubmit} className="space-y-7">
+    <div className="flex items-center justify-between">
     <Input
             type="text"
+            className="w-5/6"
             color="secondary"
             onChange={(event) => handleAdminChange(event.target.value)}
           />
     </div>
-
-    <div>
+    <div className="flex items-center justify-between">
     <Input
             type="text"
+            className="w-5/6"
             color="secondary"
             onChange={(event) => handleMinDelayChange(+event.target.value)}
           />
     </div>
 
         {args.proposers.map((value, index) => (
-        <div key={index}>
+        <div key={index} className="flex items-center">
           <Input
             type="text"
+            className="w-5/6"
             color="secondary"
             value={value}
             onChange={(event) => handleProposersChange(index, event.target.value)}
           />
-          <button type="button" onClick={() => handleRemoveProposers(index)}>
+          <Button type="button" onClick={() => handleRemoveProposers(index)}>
             删除
-          </button>
+          </Button>
         </div>
       ))}
-      <Button type="button" onClick={handleProposersInput}>
+      <Button className="flex items-center justify-between" type="button" onClick={handleProposersInput}>
         增加输入框
       </Button>
 
       {args.executors.map((value, index) => (
-        <div key={index}>
+        <div key={index} className="flex items-center">
           <Input
             type="text"
+            className="w-5/6"
             color="secondary"
             value={value}
             onChange={(event) => handleExecutorsChange(index, event.target.value)}
           />
-          <button type="button" onClick={() => handleRemoveExecutors(index)}>
+          <Button type="button" onClick={() => handleRemoveExecutors(index)}>
             删除
-          </button>
+          </Button>
         </div>
       ))}
-      <Button type="button" onClick={handleExecutorsInput}>
+      <Button className="flex justify-between" type="button" onClick={handleExecutorsInput}>
         增加输入框
       </Button>
-        <Button
-            onClick={()=>{notify(createTimeLock(args))}}
-            color="secondary"
-        >{"create new timelock"}</Button>
 
-      <button type="submit">提交</button>
+      <Button className="flex justify-between" type="submit">提交</Button>
 
    </form>
   
   </div>
    <ToastContainer/>
-   </>
+   </div>
   )
 }

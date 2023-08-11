@@ -11,9 +11,9 @@ export default function Home() {
 return(
   <Layout>
     <main className="flex min-h-screen items-center justify-between p-24"> 
-      <div className="items-center"> TimeLock Controller </div>
-      <Link href='./newTimeLock'> create a new timelock </Link>
-      <Link href='./myTimeLocks'> my timelock </Link>
+      <div className="items-center text-xl text-neutral-900"> TimeLock Controller </div>
+      <Link className="text-xl text-neutral-900" href='./newTimeLock'> create a new timelock </Link>
+      <Link className="text-xl text-neutral-900" href='./myTimeLocks'> my timelock </Link>
     </main>
   </Layout>
 )
