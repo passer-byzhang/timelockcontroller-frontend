@@ -3,4 +3,5 @@ export interface TimeLockModel {
   timelock: string;
   owner: string;
   blockNumber: number;
+  transactionHash: string;
 }

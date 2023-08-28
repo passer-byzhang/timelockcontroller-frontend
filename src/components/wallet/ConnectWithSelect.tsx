@@ -3,8 +3,8 @@ import type { Web3ReactHooks } from '@web3-react/core'
 
 import { Button } from '@material-ui/core';
 import { MetaMask } from '@web3-react/metamask'
-import { useCallback, useEffect, useState } from 'react'
-
+import { useCallback, useEffect, useState ,useContext} from 'react'
+import {AccountContext} from '../../hooks/web3'
 import { CHAINS, getAddChainParameters } from './chains'
 
 async function connectWallet(connector:MetaMask,setError:(error: Error | undefined) => void){
@@ -32,6 +32,13 @@ export function ConnectWithSelect({
   error: Error | undefined
   setError: (error: Error | undefined) => void
 }) {
+  const accountContext = useContext(AccountContext);
+  // attempt to connect eagerly on mount
+  useEffect(() => {
+    accountContext.setAccount(accounts==undefined?undefined:accounts[0])
+  }, [accountContext,accounts])
+
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ marginBottom: '1rem' }} />
@@ -40,7 +47,7 @@ export function ConnectWithSelect({
             {String(accounts[0]).substring(0,6) + "..."+String(accounts[0]).substring(40)}
           </Button>
         )
-       : (
+       : (  
         <Button
           onClick={()=>{connectWallet(connector,setError)}}
           disabled={isActivating}
